@@ -22,6 +22,27 @@ impl Config {
             ignore_case,
         })
     }
+
+    //build()在十三章中优化为使用迭代器实现
+    pub fn build_from_iterator(
+        mut args: impl Iterator<Item = String>,
+    ) -> Result<Config, &'static str> {
+        args.next();
+        let query = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a query string"),
+        };
+        let file_path = match args.next() {
+            Some(arg) => arg,
+            None => return Err("Didn't get a file path"),
+        };
+        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        Ok(Config {
+            query,
+            file_path,
+            ignore_case,
+        })
+    }
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
@@ -45,6 +66,14 @@ pub fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
         }
     }
     results
+}
+
+//search()在十三章中优化为使用迭代器实现
+pub fn search_from_iterator<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
+    content
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {

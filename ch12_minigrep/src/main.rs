@@ -19,6 +19,13 @@ fn main() {
         process::exit(1);
     });
 
+    //build()在十三章中优化为使用迭代器实现
+    let config = Config::build_from_iterator(env::args()).unwrap_or_else(|err| {
+        //println!("Problem parsing arguments:{err}");
+        eprintln!("Problem parsing arguments:{err}"); //打印到标准错误流
+        process::exit(1);
+    });
+
     println!(
         "Searching for {} in file {}",
         config.query, config.file_path
