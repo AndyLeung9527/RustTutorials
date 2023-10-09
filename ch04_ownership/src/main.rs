@@ -24,6 +24,7 @@ fn main() {
         let r1 = &mut s1;
         //refer mut many times in the same scope
         //let r2 = &mut s1;//Error
+        println!("The content of r1 is '{r1}'.");
     }
 
     {
