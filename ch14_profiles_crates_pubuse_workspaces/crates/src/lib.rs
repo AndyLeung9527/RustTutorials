@@ -86,5 +86,11 @@ cargo install把二进制文件安装到Rust安装根目录的bin文件夹中(�
 Installing C:\Users\LWB\.cargo\bin\rg.exe
 Installed package `ripgrep v13.0.0` (executable `rg.exe`)
 倒数第二行说明安装目录，最后一行说明执行程序运行指令
+*/
+/*
 cargo uninstall命令卸载，示例：cargo uninstall ripgrep
+*/
+/*
+这个设计使得开发者可以通过新的子命令来对cargo进行扩展：
+若$PATH中有类似cargo-something的二进制文件，则可通过cargo something来运行，类似这样的自定义命令可以运行cargo --list展示出来
 */
