@@ -1,0 +1,15 @@
+[workspace]
+
+members = [
+    "adder",
+    "add_one",
+]
+
+# workspace项目示例
+# 包含一个二进制项目和两个库，其中项目会依赖那两个库；一个库提供add_one方法，另一个库提供add_two方法
+# 本Cargo.toml文件配置了整个工作空间，不会包含[package]部分，以[workspace]作为开始，并指定路径为工作空间增加的成员
+# 工作空间顶级目录有一个target目录，而成员没有自己的target目录，它们共享使用顶级目录target
+# 通过执行cargo run -p adder指定工作空间中运行的包
+# 工作空间只在根目录有一个Cargo.lock，确保所有crate都使用完全相同版本的依赖
+# 在顶级目录执行cargo run，则会运行工作空间中所有的crate测试，也可以通过-p参数指定测试的crate名称
+# 工作空间中的crate需要单独发布，通过-p参数指定发布的crate名称
