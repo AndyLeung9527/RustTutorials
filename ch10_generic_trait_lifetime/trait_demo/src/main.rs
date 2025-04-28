@@ -10,4 +10,6 @@ fn main() {
     println!("1 new tweet: {}", tweet.summarize());
 
     trait_demo::notify(&tweet, &tweet);
+
+    println!("{}", 1.summarize_author());
 }

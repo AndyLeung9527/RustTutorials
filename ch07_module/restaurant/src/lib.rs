@@ -91,7 +91,7 @@ fn function4() -> IoResult<()> {
     Ok(())
 }
 
-pub use crate::front_of_house::serving; //pub use重定向
+pub use crate::front_of_house::serving; //pub use重导出
 pub fn eat_at_restaurant_5() {
     serving::take_order();
 }
